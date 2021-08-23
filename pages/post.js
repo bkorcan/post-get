@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useStore } from '../components/state'
-import Router from 'next/router';
 
 export default function Post() {
 
@@ -11,7 +10,6 @@ export default function Post() {
   const setCall = useStore(state => state.setCall)
   const setErrorText = useStore(state => state.setErrorText)
   const setCallGet = useStore(state => state.setCallGet)
-
 
   useEffect(
     async () => {
@@ -33,11 +31,13 @@ export default function Post() {
 
       if (res.status === 200) {
         setShow('block')
-        // Router.push('/');
         console.log('POST status 200')
         setCallGet(true)
       }
     }, []
   )
-  return <span></span>
+  return (
+    <>
+    </>
+  )
 }

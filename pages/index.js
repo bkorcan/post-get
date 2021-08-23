@@ -2,7 +2,9 @@ import { useStore } from '../components/state'
 import { useRef } from 'react';
 import Post from './post';
 import Style from '../styles/post-get.module.css'
-import GetHome from './get_home';
+import GetData from './get';
+
+
 
 export default function Home() {
 
@@ -10,13 +12,11 @@ export default function Home() {
   const node2 = useRef()
   const node3 = useRef()
 
-
   const show = useStore(state => state.show)
   const call = useStore(state => state.call)
   const errorText = useStore(state => state.errorText)
   const callGet = useStore(state => state.callGet)
   const nameGet = useStore(state => state.nameGet)
-
 
   const setId = useStore(state => state.setId)
   const setName = useStore(state => state.setName)
@@ -49,23 +49,32 @@ export default function Home() {
         <button style={{ display: show }} onClick={handleClick} className={Style.submit}> Post </button>
         {call ? <Post /> : <ErrorCall />}
       </div>
+
       <div className={Style.get} >
-        <h3>Villas</h3>
-        {
-          callGet ?
-            <GetHome />
-            :
-            <ul>
-              {
-                nameGet.map(e =>
-                  <li key={e} >
-                    {e}
-                  </li>
-                )
-              }
-            </ul>
-        }
+        <h3>
+          Villa Names
+        </h3>
+        <div>
+          {
+            callGet
+              ?
+              <GetData />
+              :
+
+              <ul>
+                {
+                  nameGet.map(e =>
+                    <li key={e} >
+                      {e}
+                    </li>
+                  )
+                }
+              </ul>
+          }
+        </div>
+
       </div>
+
     </div>
 
   )
